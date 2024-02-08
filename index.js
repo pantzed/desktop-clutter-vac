@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const {access, copyFile} = require('fs');
+const fs = require('fs');
 const { exec } = require('child_process');
 const path = require('path');
 const updateCrontab = require('./updateCrontab');
@@ -12,9 +12,9 @@ function init() {
     const destinationFilePath = path.join(destinationDir, fileName);
 
     // Copy the clutterVac script to local cronscripts
-    access(destinationFilePath, fs.constants.F_OK, (err) => {  
+    fs.access(destinationFilePath, fs.constants.F_OK, (err) => {  
     if (err) {
-        copyFile(sourceFilePath, destinationFilePath, (err) => {
+        fs.copyFile(sourceFilePath, destinationFilePath, (err) => {
             if (err) {
                 console.error('Error copying file:', err);
             } else {
