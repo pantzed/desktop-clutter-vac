@@ -39,7 +39,7 @@ function init() {
         }
     }); 
     // Add clutterVac to crontab
-    updateCrontab(`*/1 * * * * source ~/.zprofile && node ${destinationFilePath}`);
+    updateCrontab(`*/15 * * * * source ~/.zprofile && node ${destinationFilePath}`);
 }
 
 init();
