@@ -3,9 +3,10 @@
 const { exec } = require('child_process');
 
 function updateCrontab(newCronJob) {
+    console.log('Updating crontab file...');
     exec('crontab -l', (error, stdout, stderr) => {
         if (stdout.includes(newCronJob)) {
-            console.log('Job already exists in crontab, skipping file copy...');
+            console.log('Job already exists in crontab, skipping.');
             return;
         }
         if (!error) {
