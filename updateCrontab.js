@@ -4,10 +4,13 @@ const { exec } = require('child_process');
 
 function updateCrontab(newCronJob) {
     exec('crontab -l', (error, stdout, stderr) => {
+        if (stdout.includes(newCronJob)) {
+            console.log('Job already exists in crontab, skipping file copy...');
+            return;
+        }
         if (!error) {
             const combinedCron = stdout.trim() + '\n' + newCronJob;
             const updateCronCommand = `echo "${combinedCron}" | crontab -`;
-            // Update crontab
             exec(updateCronCommand, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error updating crontab: ${error.message}`);

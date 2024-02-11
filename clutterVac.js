@@ -3,9 +3,11 @@
 const { mkdir } = require("fs/promises");
 const { readdirSync, renameSync } = require("fs");
 const { extname, join } = require("path");
+const os = require('os');
 
 function clutterVac() {
-    const root = "/Users/ed-pantzar/Desktop";
+    const homeDir = os.homedir();
+    const root = join(homeDir, 'Desktop');
     const files = readdirSync(root);
     const fileTypeMap = {
         image: [
